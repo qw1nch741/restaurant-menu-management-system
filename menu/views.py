@@ -24,3 +24,7 @@ def index(request):
     return render(request, "menu:index.html", context=context)
 
 
+class DishListView(LoginRequiredMixin, generic.ListView):
+    model = Dish
+    context_object_name = "dish_list"
+    template_name =
