@@ -63,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.static',
             ],
         },
     },
@@ -116,6 +117,16 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+# settings.py
+# This maps the boilerplate variable to your static path
+ASSETS_ROOT = '/static/assets/'
+# This tells Django where your static files live during development
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# This is for when you eventually deploy (collectstatic)
+STATIC_ROOT = BASE_DIR / "staticfiles"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
