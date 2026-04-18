@@ -15,7 +15,8 @@ from .views import (index,
                     CookDetailView,
                     CookCreateView,
                     CookUpdateView,
-                    CookDeleteView
+                    CookDeleteView,
+                    help_page_view
                     )
 
 app_name = "menu"
@@ -40,4 +41,6 @@ urlpatterns = [
     path("cook/create/",CookCreateView.as_view(), name="cook-create"),
     path("cook/<int:pk>/update/", CookUpdateView.as_view(), name="cook-update"),
     path("cook/<int:pk>/delete/", CookDeleteView.as_view(), name="cook-delete"),
+    #Help page view
+    path("help/", help_page_view, name="help-page"),
 ]

@@ -112,3 +112,6 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Cook
     success_url = reverse_lazy("menu:cook-list")
 
+
+def help_page_view(request):
+    return render(request, "menu/help_page.html")
