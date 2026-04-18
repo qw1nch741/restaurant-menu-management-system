@@ -1,0 +1,31 @@
+{% load static %}
+<div class="px-3 mb-4">
+  <form method="get" action="" class="row align-items-center">
+    <div class="col-md-8 col-sm-12">
+      <div class="input-group input-group-static mb-0">
+        <label class="ms-0 font-weight-bold text-primary d-flex align-items-center">
+          <i class="material-icons border-radius-sm me-2">search</i>
+          <span class="mt-1">Search</span>
+        </label>
+
+        <div class="mt-2 w-100">
+          {{ search_form.title }}
+        </div>
+
+        <span class="form-text text-xs text-secondary ms-1 mt-2">
+          Enter keywords to filter the list below
+        </span>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12 text-end">
+      <div class="mt-4">
+        <button type="submit" class="btn bg-gradient-primary mb-0 px-4">
+          Search
+        </button>
+        <a href="." class="btn btn-link text-secondary mb-0 px-3">
+          Reset
+        </a>
+      </div>
+    </div>
+  </form>
+</div>

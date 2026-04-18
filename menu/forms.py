@@ -32,3 +32,16 @@ class DishTypeForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
+
+
+class CookSearchForm(forms.Form):
+    title = forms.CharField(max_length=255, required=False)
+
+
+class DishSearchForm(forms.Form):
+    title = forms.CharField(max_length=255, required=False)
+
+
+class DishTypeSearchForm(forms.Form):
+    title = forms.CharField(max_length=255, required=False)
+
