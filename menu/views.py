@@ -143,7 +143,7 @@ class CookListView(LoginRequiredMixin, generic.ListView):
         name = self.request.GET.get("title")
 
         if name:
-            return queryset.filter(name__icontains=name)
+            return queryset.filter(username__icontains=name)
 
         return queryset
 
