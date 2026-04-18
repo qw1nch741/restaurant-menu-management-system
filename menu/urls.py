@@ -1,7 +1,6 @@
 # menu/urls.py
 from django.urls import path
-from .views import (index,
-                    DishListView,
+from .views import (DishListView,
                     DishCreateView,
                     DishUpdateView,
                     DishDetailView,
