@@ -1,52 +1,58 @@
 {% extends "base.html" %}
-{% load static %}
-
 {% block content %}
   {% include 'includes/navigation.html' %}
 
   <div class="container mt-9">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <div class="card card-body blur shadow-blur">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="mb-0 text-gradient text-primary font-weight-bolder">Menu Items</h3>
-            <a href="{% url 'menu:dish-create' %}" class="btn btn-sm bg-gradient-primary mb-0">
-              <i class="material-icons text-sm">restaurant_menu</i>&nbsp;&nbsp;Add Dish
-            </a>
-          </div>
+    <div class="card card-body blur shadow-blur">
 
-          <div class="table-responsive">
-            <table class="table table-flush align-items-center">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dish Name</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for dish in dish_list %}
-                  <tr>
-                    <td class="text-sm">
-                      <a href="{% url 'menu:dish-detail' pk=dish.id %}" class="text-dark font-weight-bold">
+      {% include "includes/search_bar.html" %}
+
+      <div class="d-flex justify-content-between align-items-center mb-3 px-3">
+        <h3 class="text-gradient text-primary mb-0">Menu Items</h3>
+        <a href="{% url 'menu:dish-create' %}" class="btn btn-sm bg-gradient-dark mb-0">Add New Dish</a>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table align-items-center mb-0">
+          <thead>
+            <tr>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dish Name</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
+              <th class="text-secondary opacity-7"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for dish in dish_list %}
+              <tr>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                      <a href="{% url 'menu:dish-detail' pk=dish.id %}" class="mb-0 text-sm font-weight-bold text-dark">
                         {{ dish.name }}
                       </a>
-                      <td class="text-sm"><span class="badge badge-sm bg-gradient-secondary">{{ dish.price }}</span></td>
-                    </td>
-                    <td class="text-sm"><span class="badge badge-sm bg-gradient-secondary">{{ dish.dish_type }}</span></td>
-                    <td class="text-center">
-                      <a href="{% url 'menu:dish-update' pk=dish.id %}" class="text-secondary me-3"><i class="material-icons text-sm">edit</i></a>
-                      <a href="{% url 'menu:dish-delete' pk=dish.id %}" class="text-danger"><i class="material-icons text-sm">delete</i></a>
-                    </td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-          {% include "includes/pagination.html" %}
-        </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <p class="text-xs font-weight-bold mb-0">{{ dish.dish_type }}</p>
+                </td>
+                <td class="align-middle text-center text-sm">
+                  <span class="badge badge-sm bg-gradient-success">${{ dish.price }}</span>
+                </td>
+                <td class="align-middle text-end">
+                  <a href="{% url 'menu:dish-update' pk=dish.id %}" class="text-secondary font-weight-bold text-xs me-3">Edit</a>
+                  <a href="{% url 'menu:dish-delete' pk=dish.id %}" class="text-danger font-weight-bold text-xs">Delete</a>
+                </td>
+              </tr>
+            {% empty %}
+              <tr><td colspan="4" class="text-center py-4 text-secondary">No dishes match your search.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
+
+      {% include "includes/pagination.html" %}
     </div>
   </div>
 {% endblock %}

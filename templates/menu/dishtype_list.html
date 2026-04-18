@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% load static %}
-
 {% block content %}
   {% include 'includes/navigation.html' %}
 
@@ -8,39 +6,42 @@
     <div class="row">
       <div class="col-lg-8 mx-auto">
         <div class="card card-body blur shadow-blur">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="mb-0 text-gradient text-primary font-weight-bolder">Dish Categories</h3>
-            <a href="{% url 'menu:dish-type-create' %}" class="btn btn-sm bg-gradient-primary mb-0">
-              <i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Category
-            </a>
+
+          {% include "includes/search_bar.html" %}
+
+          <div class="d-flex justify-content-between align-items-center mb-3 px-3">
+            <h3 class="text-gradient text-primary mb-0">Categories</h3>
+            <a href="{% url 'menu:dish-type-create' %}" class="btn btn-sm bg-gradient-dark mb-0">New Category</a>
           </div>
 
           <div class="table-responsive">
-            <table class="table table-flush align-items-center">
+            <table class="table align-items-center mb-0">
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category Name</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Actions</th>
+                  <th class="text-secondary opacity-7"></th>
                 </tr>
               </thead>
               <tbody>
-                {% for dishtype in dishtype_list %}
+                {% for type in dishtype_list %}
                   <tr>
-                    <td class="text-sm">
-                      {# CLICKABLE LINK TO DETAIL #}
-                      <a href="{% url 'menu:dish-type-detail' pk=dishtype.id %}" class="text-dark font-weight-bold">
-                        {{ dishtype.name }}
+                    <td>
+                      <a href="{% url 'menu:dish-type-detail' pk=type.id %}" class="ps-3 text-sm font-weight-bold text-dark">
+                        {{ type.name }}
                       </a>
                     </td>
-                    <td class="text-center">
-                      <a href="{% url 'menu:dish-type-update' pk=dishtype.id %}" class="text-secondary me-3"><i class="material-icons text-sm">edit</i></a>
-                      <a href="{% url 'menu:dish-type-delete' pk=dishtype.id %}" class="text-danger"><i class="material-icons text-sm">delete</i></a>
+                    <td class="align-middle text-end pe-3">
+                      <a href="{% url 'menu:dish-type-update' pk=type.id %}" class="text-secondary font-weight-bold text-xs me-3">Edit</a>
+                      <a href="{% url 'menu:dish-type-delete' pk=type.id %}" class="text-danger font-weight-bold text-xs">Delete</a>
                     </td>
                   </tr>
+                {% empty %}
+                  <tr><td class="text-center py-4 text-secondary">No categories found.</td></tr>
                 {% endfor %}
               </tbody>
             </table>
           </div>
+
           {% include "includes/pagination.html" %}
         </div>
       </div>

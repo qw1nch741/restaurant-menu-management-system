@@ -1,35 +1,25 @@
 {% if is_paginated %}
   <div class="pagination-container justify-content-center d-flex mt-4">
     <ul class="pagination pagination-primary">
-
       {% if page_obj.has_previous %}
         <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-            <span aria-hidden="true"><i class="material-icons" aria-hidden="true">chevron_left</i></span>
+          <a class="page-link" href="?{% if request.GET.name %}name={{ request.GET.name }}&{% elif request.GET.username %}username={{ request.GET.username }}&{% endif %}page={{ page_obj.previous_page_number }}">
+            <span aria-hidden="true">&laquo;</span>
           </a>
-        </li>
-      {% else %}
-        <li class="page-item disabled">
-          <span class="page-link"><i class="material-icons">chevron_left</i></span>
         </li>
       {% endif %}
 
       <li class="page-item active">
-        <span class="page-link">{{ page_obj.number }} / {{ paginator.num_pages }}</span>
+        <span class="page-link text-white">{{ page_obj.number }} / {{ paginator.num_pages }}</span>
       </li>
 
       {% if page_obj.has_next %}
         <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-            <span aria-hidden="true"><i class="material-icons" aria-hidden="true">chevron_right</i></span>
+          <a class="page-link" href="?{% if request.GET.name %}name={{ request.GET.name }}&{% elif request.GET.username %}username={{ request.GET.username }}&{% endif %}page={{ page_obj.next_page_number }}">
+            <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
-      {% else %}
-        <li class="page-item disabled">
-          <span class="page-link"><i class="material-icons">chevron_right</i></span>
-        </li>
       {% endif %}
-
     </ul>
   </div>
 {% endif %}
