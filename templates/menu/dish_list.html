@@ -6,43 +6,45 @@
 
   <div class="container mt-9">
     <div class="row">
-      <div class="col-lg-8 mx-auto">
-        <div class="card card-body blur shadow-blur overflow-hidden">
-          <h3 class="mb-4">Our Dishes</h3>
+      <div class="col-lg-10 mx-auto">
+        <div class="card card-body blur shadow-blur">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="mb-0 text-gradient text-primary font-weight-bolder">Menu Items</h3>
+            <a href="{% url 'menu:dish-create' %}" class="btn btn-sm bg-gradient-primary mb-0">
+              <i class="material-icons text-sm">restaurant_menu</i>&nbsp;&nbsp;Add Dish
+            </a>
+          </div>
 
-          {% if dish_list %}  {# Fixed variable name here #}
-            <div class="table-responsive">
-              <table class="table table-flush">
-                <thead class="thead-light">
+          <div class="table-responsive">
+            <table class="table table-flush align-items-center">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dish Name</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for dish in dish_list %}
                   <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Dish Type</th>
+                    <td class="text-sm">
+                      <a href="{% url 'menu:dish-detail' pk=dish.id %}" class="text-dark font-weight-bold">
+                        {{ dish.name }}
+                      </a>
+                      <td class="text-sm"><span class="badge badge-sm bg-gradient-secondary">{{ dish.price }}</span></td>
+                    </td>
+                    <td class="text-sm"><span class="badge badge-sm bg-gradient-secondary">{{ dish.dish_type }}</span></td>
+                    <td class="text-center">
+                      <a href="{% url 'menu:dish-update' pk=dish.id %}" class="text-secondary me-3"><i class="material-icons text-sm">edit</i></a>
+                      <a href="{% url 'menu:dish-delete' pk=dish.id %}" class="text-danger"><i class="material-icons text-sm">delete</i></a>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {% for dish in dish_list %}
-                    <tr>
-                      <td>
-                        <a href="{% url 'menu:dish-detail' pk=dish.id %}" class="text-primary font-weight-bold">
-                          #{{ dish.id }}
-                        </a>
-                      </td>
-                      <td>{{ dish.name }}</td>
-                      <td>{{ dish.price }}</td>
-                      <td>{{ dish.dish_type }}</td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-          {% else %}
-            <div class="text-center py-4">
-              <p class="lead text-muted">There are no dishes in the restaurant yet.</p>
-              <hr class="horizontal dark my-4">
-            </div>
-          {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% include "includes/pagination.html" %}
         </div>
       </div>
     </div>

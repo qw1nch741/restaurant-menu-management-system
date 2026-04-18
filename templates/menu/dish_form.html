@@ -1,1 +1,41 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+  {% include 'includes/navigation.html' %}
+
+  <div class="container mt-9">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="card card-body blur shadow-blur">
+          <div class="text-center mb-4">
+            <h3 class="font-weight-bolder text-gradient text-primary">Create New Dish</h3>
+            <p class="text-muted">Add a delicious new entry to the restaurant menu</p>
+          </div>
+
+          <form action="" method="post" novalidate>
+            {% csrf_token %}
+
+            <div class="row">
+              <div class="col-md-12">
+                {{ form|crispy }}
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col-md-12 text-center">
+                <button type="submit" class="btn bg-gradient-primary w-100 w-md-auto mb-0">
+                  Save Dish
+                </button>
+                <a href="{% url 'menu:dish-list' %}" class="btn btn-outline-secondary w-100 w-md-auto mb-0 ms-md-2 mt-2 mt-md-0">
+                  Back to Menu
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

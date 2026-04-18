@@ -2,49 +2,49 @@
 {% load static %}
 
 {% block content %}
-  {# Ensure the navigation is included so the page has a header #}
   {% include 'includes/navigation.html' %}
 
-  {# The mt-9 margin is critical to push content below the sticky navbar #}
   <div class="container mt-9">
     <div class="row">
-      <div class="col-lg-8 mx-auto">
-        <div class="card card-body blur shadow-blur overflow-hidden">
-          <h3 class="mb-4">Our Professional Cooks</h3>
+      <div class="col-lg-10 mx-auto">
+        <div class="card card-body blur shadow-blur">
 
-          {% if cook_list %}
-            <div class="table-responsive">
-              <table class="table table-flush">
-                <thead class="thead-light">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="mb-0 text-gradient text-primary font-weight-bolder">Professional Cooks</h3>
+            <a href="{% url 'menu:cook-create' %}" class="btn btn-sm bg-gradient-primary mb-0">
+              <i class="material-icons text-sm">person_add</i>&nbsp;&nbsp;Add Cook
+            </a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-flush align-items-center">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for cook in cook_list %}
                   <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <td class="text-sm">#{{ cook.id }}</td>
+                    <td class="text-sm">
+                      {# CLICKABLE LINK TO DETAIL #}
+                      <a href="{% url 'menu:cook-detail' pk=cook.id %}" class="text-dark font-weight-bold mb-0">
+                        {{ cook.first_name }} {{ cook.last_name }}
+                      </a>
+                    </td>
+                    <td class="text-center">
+                      <a href="{% url 'menu:cook-update' pk=cook.id %}" class="text-secondary me-3"><i class="material-icons text-sm">edit</i></a>
+                      <a href="{% url 'menu:cook-delete' pk=cook.id %}" class="text-danger"><i class="material-icons text-sm">delete</i></a>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {% for cook in cook_list %}
-                    <tr>
-                      <td>
-                        <a href="{% url 'menu:cook-detail' pk=cook.id %}" class="text-primary font-weight-bold">
-                          #{{ cook.id }}
-                        </a>
-                      </td>
-                      <td>{{ cook.first_name }}</td>
-                      <td>{{ cook.last_name }}</td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-          {% else %}
-            {# This section shows only if the database table is empty #}
-            <div class="text-center py-4">
-              <p class="lead text-muted">There are no cooks in the restaurant yet.</p>
-              <hr class="horizontal dark my-4">
-              <a href="{% url 'menu:cook-create' %}" class="btn bg-gradient-primary w-auto me-2">Add First Cook</a>
-            </div>
-          {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% include "includes/pagination.html" %}
         </div>
       </div>
     </div>
