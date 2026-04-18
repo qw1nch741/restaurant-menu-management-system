@@ -14,18 +14,16 @@ from menu.models import (Dish,
                          Cook)
 
 
-@login_required
-def index(request):
-    num_dish = Dish.objects.count()
-    num_dishtype = DishType.objects.count()
-    num_cook = Cook.objects.count()
+class Index(LoginRequiredMixin, generic.TemplateView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-    context = {
-        "num_dish" : num_dish,
-        "num_dishtype" : num_dishtype,
-        "num_cook": num_cook,
-    }
-    return render(request, "menu/index.html", context=context)
+        context["num_dish"] = Dish.objects.count()
+        context["num_dishtype"] = DishType.objects.count()
+        context["num_cook"] = Cook.objects.count()
+
+        return context
+
 
 #Dish views
 class DishListView(LoginRequiredMixin, generic.ListView):
@@ -171,5 +169,5 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("menu:cook-list")
 
 
-def help_page_view(request):
-    return render(request, "menu/help_page.html")
+class HelpPageView(generic.TemplateView):
+    template_name = "menu/help_page.html"
