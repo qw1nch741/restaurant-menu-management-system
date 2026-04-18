@@ -63,7 +63,7 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
 
 class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = DishType
-    template_name = "menu/dishtype-list.html"
+    template_name = "menu/dishtype_detail.html"
 
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
@@ -104,7 +104,7 @@ class CookCreateView(LoginRequiredMixin, generic.CreateView):
 
 class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
-    fields = "__all__"
+    form_class = CookForm
     success_url = reverse_lazy("menu:cook-list")
 
 
