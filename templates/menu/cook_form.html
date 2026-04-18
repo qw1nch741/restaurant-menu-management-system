@@ -6,16 +6,30 @@
       <div class="col-lg-6 mx-auto">
         <div class="card card-body blur shadow-blur p-4">
           <h3 class="text-gradient text-primary text-center mb-4">Cook Profile</h3>
+
           <form method="post" action="">
             {% csrf_token %}
+
             {% for field in form %}
-              <div class="input-group input-group-static mb-4">
-                <label>{{ field.label }}</label>
+              <div class="input-group input-group-static mb-2 {% if field.errors %}is-invalid{% endif %}">
+                <label class="mb-0 {% if field.errors %}text-danger{% endif %}">{{ field.label }}</label>
                 {{ field }}
               </div>
+
+              {% if field.errors %}
+                <div class="mb-4">
+                  {% for error in field.errors %}
+                    <span class="text-danger text-xxs font-weight-bold d-block">
+                      <i class="fas fa-exclamation-circle me-1"></i> {{ error }}
+                    </span>
+                  {% endfor %}
+                </div>
+              {% else %}
+                <div class="mb-4"></div> {% endif %}
             {% endfor %}
+
             <button type="submit" class="btn bg-gradient-primary w-100 mt-3">Save Cook</button>
-            <a href="{% url 'menu:cook-list' %}" class="btn btn-link w-100 text-secondary">Back to List</a>
+            <a href="{% url 'menu:cook-list' %}" class="btn btn-link w-100 text-secondary mb-0">Back to List</a>
           </form>
         </div>
       </div>
