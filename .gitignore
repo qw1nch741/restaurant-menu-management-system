@@ -1,3 +1,14 @@
-.idea
-venv
-**__pychache__
+# IDE
+.idea/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+**/*.py[cod]
+
+#database
+db.sqlite3
