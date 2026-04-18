@@ -1,50 +1,55 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}Project Overview{% endblock %}
+
 {% block content %}
   {% include 'includes/navigation.html' %}
 
   <header class="header-2">
-    <div class="page-header min-vh-50 relative" style="background-image: url('{% static 'assets/img/bg2.jpg' %}')">
-      <span class="mask bg-gradient-primary opacity-4"></span>
+    <div class="page-header min-vh-75 relative"
+         style="background-image: url('{% static 'assets/img/restaurant-interior.jpg' %}'); background-color: #1c1c1c;">
+
+      <span class="mask bg-gradient-dark opacity-6"></span>
+
       <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto">
-            <h1 class="text-white pt-3 mt-n5">Project Overview</h1>
-            <p class="lead text-white mt-3">A Comprehensive Restaurant Management System</p>
+            <h1 class="text-white pt-3 mt-n5 font-weight-bold">Project Overview</h1>
+            <p class="lead text-white mt-3">Restaurant Management System <br/> Everything in its own place</p>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+  <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-5">
     <section class="py-sm-7 py-5 position-relative">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h3 class="text-gradient text-primary mb-3">About the Project</h3>
             <p class="text-dark">
-              This <strong>Restaurant Management System</strong> is a backend-focused web application designed to streamline kitchen operations. It allows restaurant owners to manage their staff (cooks), categorize their menu items (dish types), and maintain an up-to-date digital menu (dishes) with ease.
+              This <strong>Restaurant Management System</strong> is a backend-focused web application designed to streamline kitchen operations. It allows restaurant owners to manage staff, categorize menu items, and maintain an up-to-date digital menu with ease.
             </p>
 
             <h4 class="mt-5">Key Features</h4>
             <ul class="text-dark">
-              <li><strong>Dynamic Dashboard:</strong> Real-time statistics showing the total number of cooks, dishes, and categories.</li>
-              <li><strong>Staff Management:</strong> Detailed profiles for cooks including years of experience and specific dish assignments.</li>
-              <li><strong>Menu Organization:</strong> Effortless categorization of dishes into groups like Appetizers or Main Courses.</li>
-              <li><strong>Secure Access:</strong> Full authentication system with secure login and logout protocols.</li>
+              <li><strong>Dynamic Dashboard:</strong> Real-time statistics for cooks, dishes, and categories.</li>
+              <li><strong>Staff Management:</strong> Detailed profiles for cooks including assignments.</li>
+              <li><strong>Menu Organization:</strong> Categorization into groups like Appetizers or Main Courses.</li>
+              <li><strong>Secure Access:</strong> Full authentication with secure login and logout protocols.</li>
             </ul>
 
             <hr class="horizontal dark my-5">
 
             <h3 class="text-gradient text-primary mb-3">Contact & Contribution</h3>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-6 mb-4 mb-md-0">
                 <div class="info">
                   <i class="material-icons text-gradient text-primary text-3xl">code</i>
                   <h5 class="font-weight-bolder mt-3">GitHub Repository</h5>
-                  <p class="text-sm">Explore the source code, view the database logic, and contribute to the development.</p>
+                  <p class="text-sm">Explore the source code and contribute to the development.</p>
                   <a href="https://github.com/qw1nch741/restaurant-menu-management-system" target="_blank" class="text-primary icon-move-right">
                     View on GitHub <i class="fas fa-arrow-right text-xs ms-1"></i>
                   </a>
@@ -54,7 +59,7 @@
                 <div class="info">
                   <i class="material-icons text-gradient text-primary text-3xl">email</i>
                   <h5 class="font-weight-bolder mt-3">Get in Touch</h5>
-                  <p class="text-sm">For professional inquiries or technical support, feel free to reach out via email.</p>
+                  <p class="text-sm">For professional inquiries or technical support, feel free to reach out.</p>
                   <a href="mailto:kirillsauta3493@gmail.com" class="text-primary icon-move-right">
                     kirillsauta3493@gmail.com <i class="fas fa-arrow-right text-xs ms-1"></i>
                   </a>
