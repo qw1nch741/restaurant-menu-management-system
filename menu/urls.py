@@ -16,13 +16,14 @@ from .views import (index,
                     CookCreateView,
                     CookUpdateView,
                     CookDeleteView,
-                    help_page_view
+                    HelpPageView,
+                    Index
                     )
 
 app_name = "menu"
 
 urlpatterns = [
-    path("", index, name="index"),
+    path("", Index.as_view(), name="index"),
     #Dish Views
     path("dish/", DishListView.as_view(), name="dish-list"),
     path("dish/<int:pk>/", DishDetailView.as_view(), name="dish-detail"),
@@ -42,5 +43,5 @@ urlpatterns = [
     path("cook/<int:pk>/update/", CookUpdateView.as_view(), name="cook-update"),
     path("cook/<int:pk>/delete/", CookDeleteView.as_view(), name="cook-delete"),
     #Help page view
-    path("help/", help_page_view, name="help-page"),
+    path("help/", HelpPageView.as_view(), name="help-page"),
 ]
