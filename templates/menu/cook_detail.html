@@ -1,1 +1,39 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  {% include 'includes/navigation.html' %}
+
+  <div class="container mt-9">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="card card-body blur shadow-blur">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="text-gradient text-primary mb-0">{{ cook.first_name }} {{ cook.last_name }}</h2>
+            <span class="badge bg-gradient-info">Years of Experience: {{ cook.years_of_experience }}</span>
+          </div>
+
+          <p class="text-muted">Username: <strong>{{ cook.username }}</strong></p>
+          <hr class="horizontal dark my-4">
+
+          <h5 class="mb-3">Assigned Dishes</h5>
+          <div class="list-group">
+            {% for dish in cook.dishes.all %}
+              <a href="{% url 'menu:dish-detail' pk=dish.id %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border-0 border-bottom">
+                {{ dish.name }}
+                <span class="badge badge-sm bg-gradient-secondary">{{ dish.dish_type }}</span>
+              </a>
+            {% empty %}
+              <p class="text-sm text-secondary">This cook has no assigned dishes yet.</p>
+            {% endfor %}
+          </div>
+
+          <div class="mt-4">
+            <a href="{% url 'menu:cook-list' %}" class="btn btn-outline-secondary">Back to List</a>
+            <a href="{% url 'menu:cook-update' pk=cook.id %}" class="btn bg-gradient-dark">Edit Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

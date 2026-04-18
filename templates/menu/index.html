@@ -28,7 +28,7 @@
               <div class="col-md-4 position-relative">
                 <div class="p-3 text-center">
                   <h6 class="text-sm mb-0 text-capitalize font-weight-bold">Total Cooks</h6>
-                  <h1 class="text-gradient text-primary" id="state1" countTo="{{ num_cooks }}">{{ num_cooks }}</h1>
+                  <h1 class="text-gradient text-primary" id="state1" countTo="{{ num_cook }}">{{ num_cook }}</h1>
                   <p class="text-sm font-weight-normal">Total number of cooks in our restaurant</p>
                 </div>
                 <hr class="vertical dark">
@@ -37,7 +37,7 @@
               <div class="col-md-4 position-relative">
                 <div class="p-3 text-center">
                   <h6 class="text-sm mb-0 text-capitalize font-weight-bold">Total Dishes</h6>
-                  <h1 class="text-gradient text-primary" id="state2" countTo="{{ num_dishes }}">{{ num_dishes }}</h1>
+                  <h1 class="text-gradient text-primary" id="state2" countTo="{{ num_dish }}">{{ num_dish }}</h1>
                   <p class="text-sm font-weight-normal">Total number of dishes available in our menu</p>
                 </div>
                 <hr class="vertical dark">
@@ -46,7 +46,7 @@
               <div class="col-md-4">
                 <div class="p-3 text-center">
                   <h6 class="text-sm mb-0 text-capitalize font-weight-bold">Total Dish Types</h6>
-                  <h1 class="text-gradient text-primary" id="state3" countTo="{{ num_dishtypes }}">{{ num_dishtypes }}</h1>
+                  <h1 class="text-gradient text-primary" id="state3" countTo="{{ num_dishtype }}">{{ num_dishtype }}</h1>
                   <p class="text-sm font-weight-normal">Total number of dish types in our menu</p>
                 </div>
               </div>
@@ -63,9 +63,9 @@
     window.addEventListener('DOMContentLoaded', (event) => {
       // Logic for each counter
       const stats = [
-        { id: 'state1', target: 'num_cooks' },
-        { id: 'state2', target: 'num_dishes' },
-        { id: 'state3', target: 'num_dishtypes' }
+        { id: 'state1', target: 'num_cook' },
+        { id: 'state2', target: 'num_dish' },
+        { id: 'state3', target: 'num_dishtype' }
       ];
 
       stats.forEach(stat => {
