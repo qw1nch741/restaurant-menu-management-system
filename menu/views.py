@@ -5,6 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from menu.forms import CookForm
 from menu.models import (Dish,
                          DishType,
                          Cook)
@@ -12,14 +13,14 @@ from menu.models import (Dish,
 
 @login_required
 def index(request):
-    num_dishes = Dish.objects.count()
-    num_dish_types = DishType.objects.count()
-    num_cooks = Cook.objects.count()
+    num_dish = Dish.objects.count()
+    num_dishtype = DishType.objects.count()
+    num_cook = Cook.objects.count()
 
     context = {
-        "num_dishes" : num_dishes,
-        "num_dish_types" : num_dish_types,
-        "num_cooks": num_cooks,
+        "num_dish" : num_dish,
+        "num_dishtype" : num_dishtype,
+        "num_cook": num_cook,
     }
     return render(request, "menu/index.html", context=context)
 
@@ -55,8 +56,8 @@ class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
 #DishType views
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
-    context_object_name = "dish-type_list"
-    template_name = "menu/dishtype-list.html"
+    context_object_name = "dishtype_list"
+    template_name = "menu/dishtype_list.html"
     paginate_by = 5
 
 
@@ -97,7 +98,7 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
 
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Cook
-    fields = "__all__"
+    form_class = CookForm
     success_url = reverse_lazy("menu:cook-list")
 
 
