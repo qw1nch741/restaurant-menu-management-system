@@ -1,1 +1,50 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  {% include 'includes/navigation.html' %}
+
+  <div class="container mt-9">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="card card-body blur shadow-blur overflow-hidden">
+          <h3 class="mb-4">Our Dishes</h3>
+
+          {% if dish_list %}  {# Fixed variable name here #}
+            <div class="table-responsive">
+              <table class="table table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Dish Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for dish in dish_list %}
+                    <tr>
+                      <td>
+                        <a href="{% url 'menu:dish-detail' pk=dish.id %}" class="text-primary font-weight-bold">
+                          #{{ dish.id }}
+                        </a>
+                      </td>
+                      <td>{{ dish.name }}</td>
+                      <td>{{ dish.price }}</td>
+                      <td>{{ dish.dish_type }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          {% else %}
+            <div class="text-center py-4">
+              <p class="lead text-muted">There are no dishes in the restaurant yet.</p>
+              <hr class="horizontal dark my-4">
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
