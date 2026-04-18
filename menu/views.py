@@ -15,6 +15,8 @@ from menu.models import (Dish,
 
 
 class Index(LoginRequiredMixin, generic.TemplateView):
+    template_name = "menu/index.html"
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
