@@ -1,30 +1,23 @@
-{% load static %}
-<div class="px-3 mb-4">
-  <form method="get" action="" class="row align-items-center">
-    <div class="col-md-8 col-sm-12">
-      <div class="input-group input-group-static mb-0">
-        <label class="ms-0 font-weight-bold text-primary d-flex align-items-center">
-          <i class="material-icons border-radius-sm me-2">search</i>
-          <span class="mt-1">Search</span>
-        </label>
+<div class="card card-body blur shadow-blur mb-4">
+  <form method="get" action="" class="w-100">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <div class="d-flex align-items-center">
+          <i class="material-icons text-primary me-2">search</i>
+          <label class="text-primary font-weight-bold mb-0 me-3">Search</label>
 
-        <div class="mt-2 w-100">
-          {{ search_form.title }}
+          <div class="input-group input-group-static w-100">
+            {{ search_form.title }}
+          </div>
         </div>
-
-        <span class="form-text text-xs text-secondary ms-1 mt-2">
-          Enter keywords to filter the list below
-        </span>
+        <div class="ms-5 mt-1">
+          <span class="text-xs text-secondary">Enter name to filter the list below</span>
+        </div>
       </div>
-    </div>
-    <div class="col-md-4 col-sm-12 text-end">
-      <div class="mt-4">
-        <button type="submit" class="btn bg-gradient-primary mb-0 px-4">
-          Search
-        </button>
-        <a href="." class="btn btn-link text-secondary mb-0 px-3">
-          Reset
-        </a>
+
+      <div class="col-lg-4 text-end mt-lg-0 mt-3">
+        <button type="submit" class="btn bg-gradient-primary mb-0">Search</button>
+        <a href="." class="btn btn-link text-secondary mb-0">Reset</a>
       </div>
     </div>
   </form>
