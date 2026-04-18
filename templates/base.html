@@ -11,24 +11,41 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
   <link href="{% static 'assets/css/nucleo-svg.css' %}" rel="stylesheet" />
-
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
   <link id="pagestyle" href="{% static 'assets/css/material-kit.css' %}?v=3.0.0" rel="stylesheet" />
 
   <style>
-    /* Ensures the footer stays at the bottom of the viewport */
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+    body { display: flex; flex-direction: column; min-height: 100vh; background-color: #f0f2f5; }
+    .main-content { flex: 1 0 auto; }
+
+    /* Fix for overlapping labels and inputs */
+    .input-group-static {
+      border-bottom: 1px solid #d2d6da !important;
+      padding-top: 15px !important;
+      padding-bottom: 5px !important;
     }
-    .main-content {
-      flex: 1 0 auto;
+
+    .input-group-static label {
+      display: block !important;
+      margin-bottom: 10px !important;
+      font-weight: 600;
+      color: #e91e63; /* Pink tint to match your project */
     }
-    .footer {
-      flex-shrink: 0;
+
+    .input-group-static input,
+    .input-group-static select,
+    .input-group-static textarea {
+      border: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      padding-left: 0 !important;
+      width: 100%;
+    }
+
+    .input-group-static:focus-within {
+      border-bottom: 2px solid #e91e63 !important;
     }
   </style>
 
@@ -45,6 +62,7 @@
   <script src="{% static 'assets/js/core/popper.min.js' %}" type="text/javascript"></script>
   <script src="{% static 'assets/js/core/bootstrap.min.js' %}" type="text/javascript"></script>
   <script src="{% static 'assets/js/material-kit.min.js' %}?v=3.0.0" type="text/javascript"></script>
+
   {% block javascripts %}{% endblock javascripts %}
 </body>
 </html>

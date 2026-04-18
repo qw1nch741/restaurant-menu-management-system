@@ -1,37 +1,27 @@
 {% extends "base.html" %}
-{% load crispy_forms_filters %}
-{% load static %}
-
 {% block content %}
   {% include 'includes/navigation.html' %}
-
-  <div class="container mt-9">
+  <div class="container mt-9 mb-6">
     <div class="row">
       <div class="col-lg-8 mx-auto">
-        <div class="card card-body blur shadow-blur">
+        <div class="card card-body blur shadow-blur p-4">
           <div class="text-center mb-4">
-            <h3 class="font-weight-bolder text-gradient text-primary">Create New Dish</h3>
-            <p class="text-muted">Add a delicious new entry to the restaurant menu</p>
+            <h2 class="text-gradient text-primary">{% if object %}Update{% else %}Create{% endif %} Dish</h2>
           </div>
-
-          <form action="" method="post" novalidate>
+          <form method="post" action="">
             {% csrf_token %}
-
-            <div class="row">
-              <div class="col-md-12">
-                {{ form|crispy }}
+            {% for field in form %}
+              <div class="input-group input-group-static mb-4">
+                <label class="font-weight-bold text-primary d-block mb-2">{{ field.label }}</label>
+                <div class="w-100 py-1">
+                  {{ field }}
+                </div>
+                {% for error in field.errors %}<p class="text-danger text-xs mt-1">{{ error }}</p>{% endfor %}
               </div>
-            </div>
-
-            <div class="row mt-4">
-              <div class="col-md-12 text-center">
-                <button type="submit" class="btn bg-gradient-primary w-100 w-md-auto mb-0">
-                  Save Dish
-                </button>
-                <a href="{% url 'menu:dish-list' %}" class="btn btn-outline-secondary w-100 w-md-auto mb-0 ms-md-2 mt-2 mt-md-0">
-                  Back to Menu
-                </a>
-              </div>
+            {% endfor %}
+            <div class="row mt-5">
+              <div class="col-6"><button type="submit" class="btn bg-gradient-primary w-100">Save Dish</button></div>
+              <div class="col-6"><a href="{% url 'menu:dish-list' %}" class="btn btn-outline-secondary w-100">Cancel</a></div>
             </div>
           </form>
         </div>
