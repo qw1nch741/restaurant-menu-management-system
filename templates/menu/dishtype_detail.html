@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  {% include 'includes/navigation.html' %}
+
+  <div class="container mt-9">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="card card-body blur shadow-blur">
+          <h2 class="text-gradient text-primary mb-4">Category: {{ dishtype.name }}</h2>
+          
+          <h5 class="mb-3">Dishes in this Category</h5>
+          <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Dish Name</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for dish in dishtype.dish_set.all %}
+                  <tr>
+                    <td>
+                      <a href="{% url 'menu:dish-detail' pk=dish.id %}" class="text-sm font-weight-bold text-dark">{{ dish.name }}</a>
+                    </td>
+                    <td class="text-sm">${{ dish.price }}</td>
+                    <td class="text-end">
+                       <a href="{% url 'menu:dish-detail' pk=dish.id %}" class="btn btn-link text-primary p-0">View</a>
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr>
+                    <td colspan="3" class="text-center text-secondary text-sm py-4">No dishes found in this category.</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-4">
+            <a href="{% url 'menu:dish-type-list' %}" class="btn btn-outline-secondary">Back to Categories</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
