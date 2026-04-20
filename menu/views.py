@@ -1,7 +1,6 @@
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse_lazy, reverse
+from django.contrib import messages
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -63,11 +62,35 @@ class DishCreateView(LoginRequiredMixin, generic.CreateView):
     fields = "__all__"
     success_url = reverse_lazy("menu:dish-list")
 
+    def form_valid(self, form):
+        # Check if the logged-in user is the public 'tester'
+        if self.request.user.username == "tester":
+            messages.warning(
+                self.request,
+                "Demo Mode: Your changes were validated but not saved to the database."
+            )
+            return redirect("menu:dish-list")
+
+        # If it's YOU (the admin), save normally
+        return super().form_valid(form)
+
 
 class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
     fields = "__all__"
     success_url = reverse_lazy("menu:dish-list")
+
+    def form_valid(self, form):
+        # Check if the logged-in user is the public 'tester'
+        if self.request.user.username == "tester":
+            messages.warning(
+                self.request,
+                "Demo Mode: Your changes were validated but not saved to the database."
+            )
+            return redirect("menu:dish-list")
+
+        # If it's YOU (the admin), save normally
+        return super().form_valid(form)
 
 
 class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -110,11 +133,35 @@ class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     fields = "__all__"
     success_url = reverse_lazy("menu:dish-type-list")
 
+    def form_valid(self, form):
+        # Check if the logged-in user is the public 'tester'
+        if self.request.user.username == "tester":
+            messages.warning(
+                self.request,
+                "Demo Mode: Your changes were validated but not saved to the database."
+            )
+            return redirect("menu:dish-list")
+
+        # If it's YOU (the admin), save normally
+        return super().form_valid(form)
+
 
 class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DishType
     fields = "__all__"
     success_url = reverse_lazy("menu:dish-type-list")
+
+    def form_valid(self, form):
+        # Check if the logged-in user is the public 'tester'
+        if self.request.user.username == "tester":
+            messages.warning(
+                self.request,
+                "Demo Mode: Your changes were validated but not saved to the database."
+            )
+            return redirect("menu:dish-list")
+
+        # If it's YOU (the admin), save normally
+        return super().form_valid(form)
 
 
 class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -159,11 +206,35 @@ class CookCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = CookForm
     success_url = reverse_lazy("menu:cook-list")
 
+    def form_valid(self, form):
+        # Check if the logged-in user is the public 'tester'
+        if self.request.user.username == "tester":
+            messages.warning(
+                self.request,
+                "Demo Mode: Your changes were validated but not saved to the database."
+            )
+            return redirect("menu:dish-list")
+
+        # If it's YOU (the admin), save normally
+        return super().form_valid(form)
+
 
 class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
     form_class = CookForm
     success_url = reverse_lazy("menu:cook-list")
+
+    def form_valid(self, form):
+        # Check if the logged-in user is the public 'tester'
+        if self.request.user.username == "tester":
+            messages.warning(
+                self.request,
+                "Demo Mode: Your changes were validated but not saved to the database."
+            )
+            return redirect("menu:dish-list")
+
+        # If it's YOU (the admin), save normally
+        return super().form_valid(form)
 
 
 class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
