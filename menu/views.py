@@ -140,7 +140,7 @@ class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
                 self.request,
                 "Demo Mode: Your changes were validated but not saved to the database."
             )
-            return redirect("menu:dish-list")
+            return redirect("menu:dish-type-list")
 
         # If it's YOU (the admin), save normally
         return super().form_valid(form)
@@ -158,7 +158,7 @@ class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
                 self.request,
                 "Demo Mode: Your changes were validated but not saved to the database."
             )
-            return redirect("menu:dish-list")
+            return redirect("menu:dish-type-list")
 
         # If it's YOU (the admin), save normally
         return super().form_valid(form)
@@ -213,7 +213,7 @@ class CookCreateView(LoginRequiredMixin, generic.CreateView):
                 self.request,
                 "Demo Mode: Your changes were validated but not saved to the database."
             )
-            return redirect("menu:dish-list")
+            return redirect("menu:cook-list")
 
         # If it's YOU (the admin), save normally
         return super().form_valid(form)
@@ -231,7 +231,7 @@ class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
                 self.request,
                 "Demo Mode: Your changes were validated but not saved to the database."
             )
-            return redirect("menu:dish-list")
+            return redirect("menu:cook-list")
 
         # If it's YOU (the admin), save normally
         return super().form_valid(form)
