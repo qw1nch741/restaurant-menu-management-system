@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+import mimetypes
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,13 +22,29 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^!n03!)i1*+ld2nhlf840frm-5!!j%v1qz_zaov&ujj!aqlk#i'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '#9szeg5&qve#3((ck^l91!wfkd_l^#zpy#+6oha4r(=m&k!gbw')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DJANGO_DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = []
+# This keeps it working for local tests even when DEBUG is False
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+if not DEBUG:
+    # (W008) Redirect all HTTP to HTTPS
+    SECURE_SSL_REDIRECT = True
+    # (W012) Session cookies only over HTTPS
+    SESSION_COOKIE_SECURE = True
+    # (W016) CSRF cookies only over HTTPS
+    CSRF_COOKIE_SECURE = True
+    # (W004) HSTS (Tells browser to only use HTTPS for this site)
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
 # Application definition
 
@@ -43,6 +61,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -115,6 +135,7 @@ USE_I18N = True
 USE_TZ = True
 
 LOGIN_REDIRECT_URL = '/'
+
 LOGOUT_REDIRECT_URL = 'login'
 
 # settings.py
@@ -124,6 +145,8 @@ ASSETS_ROOT = '/static/assets/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+mimetypes.add_type("application/javascript", ".js", True)
 
 
 # This is for when you eventually deploy (collectstatic)
