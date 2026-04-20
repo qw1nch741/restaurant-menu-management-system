@@ -347,3 +347,6 @@ poetry.toml
 
 # LSP config files
 pyrightconfig.json
+
+# DB backup
+db_backup.json
