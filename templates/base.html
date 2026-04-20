@@ -31,7 +31,7 @@
       display: block !important;
       margin-bottom: 10px !important;
       font-weight: 600;
-      color: #e91e63; /* Pink tint to match your project */
+      color: #e91e63;
     }
 
     .input-group-static input,
@@ -54,6 +54,29 @@
 
 <body class="bg-gray-200">
   <div class="main-content">
+
+    {% if messages %}
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible text-white fade show" role="alert">
+              <span class="text-sm">
+                {% if message.tags == 'warning' %}
+                  <i class="material-icons text-md me-2">lock</i>
+                {% endif %}
+                {{ message }}
+              </span>
+              <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
     {% block content %}{% endblock content %}
   </div>
 
