@@ -1,0 +1,40 @@
+[
+{
+  "model": "menu.cook",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$un8uog3lNlQ1PN4gL6Cfvl$d/iMQZAaE1iNmxna53JvJKc7iYvvXGcSD5EP5oRpJhY=",
+    "last_login": "2026-04-20T13:37:15.907Z",
+    "is_superuser": false,
+    "username": "tester",
+    "first_name": "Test",
+    "last_name": "Account",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-20T13:36:52.412Z",
+    "years_of_experience": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "menu.cook",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$INQBdoywxDJGRTZ1cwNgny$FHIx7dwhbBZvtgLE7301rk+H3AKgVbrdEdv1jZDbfVU=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "understand",
+    "first_name": "",
+    "last_name": "",
+    "email": "kirillsauta3493@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-04-20T13:40:16.873Z",
+    "years_of_experience": null,
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
