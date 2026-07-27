@@ -1,73 +1,39 @@
-﻿Restaurant Management System
+# Restaurant Management System
+
 A streamlined solution for managing kitchen operations, staff rosters, and digital menus.
 
 This project is a backend-focused web application designed to handle the complexity of a real-world kitchen. It allows for organized management of personnel, menu categories, and live dish assignments.
 
-Installing / Getting started
-A quick introduction of the minimal setup you need to get the server running locally.
+**[Live Demo](https://restaurant-menu-management-system-cyhq.onrender.com)** | **[Repository](https://github.com/qw1nch741/restaurant-menu-management-system/)**
 
-# Clone the repository
-git clone https://github.com/qw1nch741/restaurant-menu-management-system.git
+---
+
+## 🚀 Features
+
+* **Relational Menu Logic:** Link dishes to specific types and map which cooks are assigned to which items.
+* **Staff Management:** Profiles that track years of experience and specific kitchen responsibilities.
+* **Integrated Search:** Real-time filtering across all lists (search dishes by name, staff by username).
+* **Live Dashboard:** An overview page with dynamic counters for all managed entities.
+* **Manual UI Implementation:** A lean frontend built directly with Material Kit 2, avoiding heavy third-party form libraries.
+
+---
+
+## 🔐 Demo Access
+
+To explore the management features without creating a personal account, you can use the public testing credentials at the live demo link:
+
+* **Username:** `tester`
+* **Password:** `password123`
+
+> **Note on Demo Mode:** While logged in as the tester account, you can interact with all forms and search features. However, Create, Update, and Delete operations are simulated. Changes will be validated but not persisted to the live PostgreSQL database to maintain a clean environment for all visitors.
+
+---
+
+## 🛠️ Installing & Getting Started
+
+A quick introduction to the minimal setup you need to get the server running locally.
+
+**1. Clone the repository**
+```bash
+git clone [https://github.com/qw1nch741/restaurant-menu-management-system.git](https://github.com/qw1nch741/restaurant-menu-management-system.git) 
 cd restaurant-menu-management-system
-
-# Create and activate a virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run migrations and start
-python manage.py migrate
-python manage.py runserver
-After running the server, you can access the management dashboard at http://127.0.0.1:8000/.
-
-Initial Configuration
-To protect sensitive information, this project uses environment variables. Create a .env file in the root directory and define the following:
-
-SECRET_KEY: Your Django secret key.
-
-DEBUG: Set to True for development, False for production.
-
-DJANGO_ALLOWED_HOSTS: A comma-separated list of hosts (e.g., localhost,127.0.0.1,restaurant-menu-management-system-cyhq.onrender.com).
-
-Demo Access
-To explore the management features without creating a personal account, you can use the public testing credentials:
-
-Username: tester
-
-Password: password123
-
-Note on Demo Mode: While logged in as the tester account, you can interact with all forms and search features. However, Create, Update, and Delete operations are simulated. Changes will be validated but not persisted to the live PostgreSQL database to maintain a clean environment for all visitors.
-
-Features
-What can this project perform?
-
-Relational Menu Logic: Link dishes to specific types and map which cooks are assigned to which items.
-
-Staff Management: Profiles that track years of experience and specific kitchen responsibilities.
-
-Integrated Search: Real-time filtering across all lists (search dishes by name, staff by username).
-
-Live Dashboard: An overview page with dynamic counters for all managed entities.
-
-Manual UI Implementation: A lean frontend built directly with Material Kit 2, avoiding heavy third-party form libraries.
-
-Developing
-To start developing the project further or adding new features:
-
-Fork the repository.
-
-Create a feature branch.
-
-Ensure you are using Python 3.10+.
-
-All views should follow the Class-Based View (CBV) pattern as established in the current views.py.
-
-Contributing
-If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
-
-Links
-Live Demo: https://restaurant-menu-management-system-cyhq.onrender.com
-
-Repository: https://github.com/qw1nch741/restaurant-menu-management-system/
