@@ -8,7 +8,7 @@ This project is a backend-focused web application designed to handle the complex
 
 ---
 
-## 🚀 Features
+## Features
 
 * **Relational Menu Logic:** Link dishes to specific types and map which cooks are assigned to which items.
 * **Staff Management:** Profiles that track years of experience and specific kitchen responsibilities.
@@ -18,7 +18,7 @@ This project is a backend-focused web application designed to handle the complex
 
 ---
 
-## 🔐 Demo Access
+## Demo Access
 
 To explore the management features without creating a personal account, you can use the public testing credentials at the live demo link:
 
@@ -29,7 +29,7 @@ To explore the management features without creating a personal account, you can 
 
 ---
 
-## 🛠️ Installing & Getting Started
+## Installing & Getting Started
 
 A quick introduction to the minimal setup you need to get the server running locally.
 
